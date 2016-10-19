@@ -1,18 +1,16 @@
-class Linked_list {
+class Node  {
   constructor (data) {
     this.data = data;
     this.next = null;
   }
-
   append (element) {
-    let new_element = new Linked_list(element);
+    let new_element = new Node (element);
     let pointer = this;
     while (pointer.next != null){
       pointer = pointer.next;
     }
     pointer.next = new_element;
   }
-
   length () {
     let pointer = this;
     let length = 1;
@@ -22,16 +20,14 @@ class Linked_list {
     }
     return length;
   }
-
   prepend (element) {
-    let second_element = new Linked_list(this.data);
+    let second_element = new Node (this.data);
     second_element.next = this.next;
     this.data = element;
     this.next = second_element;
   }
-
   reverse () {
-    let reversed_list = new Linked_list(this.data);
+    let reversed_list = new Node (this.data);
     let check = this;
     while (check.next) {
       reversed_list.prepend(check.next.data);
@@ -41,10 +37,15 @@ class Linked_list {
   }
 };
 
-const a = new Linked_list('Erik');
+const arrayOf = function (array) {
+  let newLinkList = new Node (array[0]);
+  for (let i = 1; i < array.length; ++i) {
+    newLinkList.append (array[i]);
+  }
+  return newLinkList;
+}
 
+const a = new Node ('Gohar');
 a.prepend('Kalipso');
 a.prepend('Edgar');
-console.log(a);
-console.log(a.length());
-console.log(a.reverse());
+console.log(arrayOf ([1, 2, 3]));
